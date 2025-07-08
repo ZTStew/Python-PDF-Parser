@@ -20,7 +20,6 @@ TODO:
   [shouldn't do] Add case for not overwriting files already present
   Change output location to different location
   add method to name files based off parsed contents of file
-  !!! Add filler digits to file names, add space between file name and numbers !!!
 
 """
 
@@ -44,9 +43,9 @@ def PDFsplit(pdf):
 
     # output pdf file name
     # outputpdf = pdf.split('.pdf')[0] + str(i) + '.pdf'
-    outputpdf = os.getcwd() + "/" + "output" + "/" + pdf.split("/")[len(pdf.split("/"))-1].split('.pdf')[0] + str(i) + '.pdf'
+    outputpdf = os.getcwd() + "/" + "output_files" + "/" + pdf.split("/")[len(pdf.split("/"))-1].split('.pdf')[0] + " " + f"{i+1:04}" + '.pdf'
 
-    # no1 = os.getcwd() + "/" + "output" + "/" + pdf.split("/")[len(pdf.split("/"))-1].split('.pdf')[0] + str(i) + '.pdf'
+    # no1 = os.getcwd() + "/" + "output_files" + "/" + pdf.split("/")[len(pdf.split("/"))-1].split('.pdf')[0] + str(i) + '.pdf'
     # print(no1)
     # print(os.getcwd())
     # print(os.path.dirname(__file__))
