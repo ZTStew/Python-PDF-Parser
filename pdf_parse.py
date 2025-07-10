@@ -24,8 +24,8 @@ TODO:
 """
 
 # importing the required modules
-from pypdf import PdfReader, PdfWriter
 import os
+from pypdf import PdfReader, PdfWriter
 
 def PDFsplit(pdf):
   # creating pdf reader object
@@ -60,13 +60,19 @@ def PDFsplit(pdf):
     i += 1
 
 
+def clear_old_files():
+  for filename in os.listdir("./output_files"):
+    if filename != ".empty":
+      os.remove("./output_files/" + filename)
+      # print(filename + " has been deleted")
+
+
 def main():
   # search_location = "./test_files"
   search_location = "./read_files"
 
-  # print(os.listdir(search_location))
-  # print(os.listdir(search_location)[0])
-  # print(len(os.listdir(search_location)))
+
+  clear_old_files()
 
   # program runs through all files
   i = 0

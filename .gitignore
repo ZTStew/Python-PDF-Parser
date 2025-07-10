@@ -210,3 +210,11 @@ __marimo__/
 .streamlit/secrets.toml
 
 test_files/
+build/
+dist/
+pdf_parse.spec
+
+output_files/
+!output_files/.empty
+read_files/
+!read_files/.empty
