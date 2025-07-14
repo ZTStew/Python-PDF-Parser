@@ -17,8 +17,6 @@ Uses:
 TODO:
   Add user friendly method to run program and select file output location
     Currently thinking of converting file into a .exe and introducing it as a folder application stored on desktop
-  [shouldn't do] Add case for not overwriting files already present
-  Change output location to different location
   add method to name files based off parsed contents of file
 
 """
@@ -30,41 +28,35 @@ from pypdf import PdfReader, PdfWriter
 def PDFsplit(pdf):
   # creating pdf reader object
   reader = PdfReader(pdf)
-  # print(len(reader.pages))
 
   # starting index of first slice
   start = 0
 
   i = start
 
+  # loops through each page of .pdf file
   while i < len(reader.pages):
     # creating pdf writer object for (i+1)th split
     writer = PdfWriter()
 
     # output pdf file name
-    # outputpdf = pdf.split('.pdf')[0] + str(i) + '.pdf'
     outputpdf = os.getcwd() + "/" + "output_files" + "/" + pdf.split("/")[len(pdf.split("/"))-1].split('.pdf')[0] + " " + f"{i+1:04}" + '.pdf'
 
-    # no1 = os.getcwd() + "/" + "output_files" + "/" + pdf.split("/")[len(pdf.split("/"))-1].split('.pdf')[0] + str(i) + '.pdf'
-    # print(no1)
-    # print(os.getcwd())
-    # print(os.path.dirname(__file__))
-
-
-
+    # Adds single page to .pdf file
     writer.add_page(reader.pages[i])
-    # print(reader.pages[i])
+
+    # saves .pdf file
     with open(outputpdf, "wb") as f:
       writer.write(f)
 
     i += 1
 
 
+# removes old parsed .pdf files to reduce confusion and risk of old files getting reused
 def clear_old_files():
   for filename in os.listdir("./output_files"):
     if filename != ".empty":
       os.remove("./output_files/" + filename)
-      # print(filename + " has been deleted")
 
 
 def main():
@@ -82,11 +74,6 @@ def main():
 
     i += 1
 
-  # # pdf file to split
-  # pdf = './test_files/scan.pdf'
-
-  # # calling PDFsplit function to split pdf
-  # PDFsplit(pdf)
 
 if __name__ == "__main__":
   # calling the main function
