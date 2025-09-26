@@ -40,7 +40,7 @@ def PDFsplit(pdf):
     writer = PdfWriter()
 
     # output pdf file name
-    outputpdf = os.getcwd() + "/" + "output_files" + "/" + pdf.split("/")[len(pdf.split("/"))-1].split('.pdf')[0] + " " + f"{i+1:04}" + '.pdf'
+    outputpdf = os.getcwd() + "/" + "output_files" + "/" + pdf.split("/")[len(pdf.split("/"))-1].split('.pdf')[0] + " - " + f"{i+1:04}" + '.pdf'
 
     # Adds single page to .pdf file
     writer.add_page(reader.pages[i])
@@ -54,9 +54,13 @@ def PDFsplit(pdf):
 
 # removes old parsed .pdf files to reduce confusion and risk of old files getting reused
 def clear_old_files():
-  for filename in os.listdir("./output_files"):
-    if filename != ".empty":
-      os.remove("./output_files/" + filename)
+  try:
+    for filename in os.listdir("./output_files"):
+      if filename != ".empty":
+        os.remove("./output_files/" + filename)
+  except:
+    pass
+
 
 
 def main():
